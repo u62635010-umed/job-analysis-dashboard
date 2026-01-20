@@ -1,0 +1,22 @@
+S NO,MESURE FORMULA
+1,AVERAGE(Dim_Companies[Rating])
+2,COUNTROWS(Fact_Jobs)
+3,AVERAGE(Fact_Jobs[SkillsCount])
+4,AVERAGE(Fact_Jobs[Salary_USD])
+5,"AVERAGEX(VALUES(Dim_Locations[Country]),CALCULATE([AvgSalary]))"
+6,"AVERAGEX(VALUES(Fact_Jobs[Experience_Level]),CALCULATE([AvgSalary]))"
+7,COUNTROWS(Fact_Jobs)
+8,MEDIAN(Fact_Jobs[Salary_USD])
+9,"CALCULATE(COUNTROWS(Fact_Jobs),Fact_Jobs[IsRemote]=""Remote"")"
+10,"DIVIDE([RemoteJobCount],[TotalJobs],0)"
+11,"CALCULATE([TotalJobs], PREVIOUSMONTH(Dim_Date[Date]))"
+12,"DIVIDE([TotalJobs] - [PrevMonthJob],[PrevMonthJob],0)*100"
+13,"AVERAGEX(
+    VALUES(Dim_Skills[Skill_ID]),
+    CALCULATE(AVERAGE(Fact_Jobs[Salary_USD]),
+    FILTER(Fact_Job_Skills,
+    Fact_Job_Skills[Skill_ID]=Dim_Skills[Skill_ID])))"
+14,COUNTROWS(RELATEDTABLE(Fact_Job_Skills))
+,
+,
+,
